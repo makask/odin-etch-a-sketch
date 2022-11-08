@@ -4,3 +4,7 @@
     width: 500px;
     border: 1px solid black;
 }
+
+.slidecontainer{
+    display: flex;
+}
