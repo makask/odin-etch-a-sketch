@@ -1,6 +1,6 @@
+const drawingBoard = document.querySelector(".drawingBoard");
 
 function fillDrawingBoard(boardSize){
-    const drawingBoard = document.querySelector(".drawingBoard");
     let squares = drawingBoard.querySelectorAll("div");
     squares.forEach((div) => {
         div.remove();
@@ -10,13 +10,13 @@ function fillDrawingBoard(boardSize){
 
     for(let i = 0; i < (boardSize * boardSize); i++){
         let square = document.createElement("div");
-        square.style.border = "1px solid black";
-        square.style.background = "blue";
         drawingBoard.appendChild(square);
     }   
 }
 
 fillDrawingBoard(16);
+
+/* Slider to change number of squares on drawing board*/
 
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
@@ -26,3 +26,26 @@ slider.oninput = function() {
   output.innerHTML = this.value;
   fillDrawingBoard(this.value);
 }
+
+
+/* Show Grid*/
+function gridOnOff(){    
+    let gridButton = document.querySelector("#btn-show-grid");
+    let currentValue = document.getElementById("btn-show-grid").value;
+    let squares = drawingBoard.querySelectorAll("div");
+
+    if(currentValue == "gridOff"){
+        document.getElementById("btn-show-grid").value="gridOn";
+        squares.forEach((div) => {
+            div.style.border = "1px solid grey";   
+        });
+        gridButton.innerHTML = "Disable grid";
+    }else{
+        document.getElementById("btn-show-grid").value="gridOff";
+        squares.forEach((div) => {
+            div.style.border = "none";   
+        });
+        gridButton.innerHTML = "Show grid";
+    }
+}
+
