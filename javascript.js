@@ -1,5 +1,15 @@
 const drawingBoard = document.querySelector(".drawingBoard");
 let grid = false;
+let action = "draw";
+let drawColor = "black";
+let backgroundColor = "white";
+
+main();
+
+function main(){
+    fillDrawingBoard(16);
+    console.log(action);
+}
 
 function fillDrawingBoard(boardSize){
     let squares = drawingBoard.querySelectorAll("div");
@@ -15,23 +25,35 @@ function fillDrawingBoard(boardSize){
         if(grid){
             square.style.border = "1px solid grey";
         }
-        // mousemove
-        square.addEventListener("mousedown",()=>{
-            if(isDrawing){
-                square.style.background = "black";
-            }
-        });
-        square.addEventListener("mouseover", ()=>{
-            if(isDrawing){
-                square.style.background = "black";
-            }
-        });
-        square.addEventListener("click", ()=>{
-            square.style.background = "black";
-        });
+        if(action==="draw"){
+            draw(square);
+        }
     }   
 }
 
+function draw(square){
+    square.addEventListener("mousedown",()=>{
+        if(isDrawing){
+            square.style.background = drawColor;
+        }
+    });
+    square.addEventListener("mouseup",()=>{
+        if(isDrawing){
+            square.style.background = drawColor;
+        }
+    });
+    square.addEventListener("mouseover", ()=>{
+        if(isDrawing){
+            square.style.background = drawColor;
+        }
+    });
+
+    square.addEventListener("click", ()=>{
+        square.style.background = drawColor;        
+    });
+}
+
+/*Draw on grid*/
 let isDrawing = false;
 window.addEventListener("mousedown", ()=>{
     isDrawing = true;
@@ -41,8 +63,9 @@ window.addEventListener("mouseup", ()=>{
     isDrawing = false;
 });
 
+/**/
 
-fillDrawingBoard(16);
+
 
 /* Slider to change number of squares on drawing board*/
 var slider = document.getElementById("myRange");
@@ -77,4 +100,36 @@ function gridOnOff(){
         grid = false;
     }
 }
+
+/* Clear entire grid*/
+function clearGrid(){
+    let squares = drawingBoard.querySelectorAll("div");
+    squares.forEach((div) => {
+        div.style.background = "white";
+    });
+    fillDrawingBoard(slider.value); 
+}
+
+/* Drawing Color */
+let colorPicker = document.querySelector("#colorPicker");
+colorPicker.addEventListener("change", (e) => {
+    drawColor = e.target.value;
+});
+
+/* Background Color*/
+let backColor = document.querySelector("#background");
+backColor.addEventListener("change", (e) => {
+    backgroundColor = e.target.value;
+    let squares = drawingBoard.querySelectorAll("div");
+    squares.forEach((div) => {
+        div.style.background = backgroundColor;
+    });
+});
+
+/*Eraser*/
+let eraser = document.querySelector("#eraser");
+eraser.addEventListener("click", ()=>{
+   drawColor = backgroundColor; 
+});
+
 
