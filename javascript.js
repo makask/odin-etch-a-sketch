@@ -20,6 +20,7 @@ function fillDrawingBoard(boardSize){
 
     for(let i = 0; i < (boardSize * boardSize); i++){
         let square = document.createElement("div");
+        square.style.backgroundColor = "rgb(255,255,255)";
         drawingBoard.appendChild(square);
         if(grid){
             square.style.border = "1px solid grey";
@@ -33,12 +34,14 @@ function fillDrawingBoard(boardSize){
 
 function toggleDraw(){
     action = "draw";
-    console.log(action);
 }
 
 function toggleRainbow(){
     action = "rainbow";
-    console.log(action);
+}
+
+function toggleErase(){
+    action = "erase";
 }
 
 /*Draw or not on grid*/
@@ -72,7 +75,7 @@ function draw(){
     }
     /* Eraser */
     if(isDrawing && action === "erase"){
-        this.style.backgroundColor = "white";
+        this.style.backgroundColor = "rgb(255,255,255)";
         this.className = "";
     }
 }
@@ -85,12 +88,15 @@ function randomColor(){
 /* Slider to change number of squares on drawing board*/
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
-output.innerHTML = slider.value; 
+var output2 = document.getElementById("demo2");
+output.innerHTML = slider.value;
+output2.innerHTML = slider.value;
 
 slider.oninput = function() {
+  action = "draw";
   output.innerHTML = this.value;
+  output2.innerHTML = this.value;
   fillDrawingBoard(this.value);
-  console.log(this.value);
 }
 
 /* Show/Disable Grid*/
@@ -118,6 +124,7 @@ function gridOnOff(){
 
 /* Clear entire grid*/
 function clearGrid(){
+    action = "draw";
     let squares = drawingBoard.querySelectorAll("div");
     squares.forEach((div) => {
         div.style.background = "white";
@@ -128,6 +135,7 @@ function clearGrid(){
 /* Drawing Color */
 let colorPicker = document.querySelector("#colorPicker");
 colorPicker.addEventListener("change", (e) => {
+    action = "draw";
     drawColor = e.target.value;
 });
 
@@ -146,11 +154,6 @@ backColor.addEventListener("change", (e) => {
     });
 });
 
-/*Eraser*/
-let eraser = document.querySelector("#eraser");
-eraser.addEventListener("click", ()=>{
-   action = "erase"; 
-});
 
 
 
