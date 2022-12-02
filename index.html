@@ -9,35 +9,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>Etch-A-Sketch</header>
-
-        <div class="main-content">
-            <div class="buttons">
-                <div class="pen-colour">
-                    <input type="color" id="colorPicker">
-                    <p>Pen Colour</p>
-                </div>
-                <div class="background-colour">
-                    <input type="color" id="background">
-                    <p>BackGround Color</p>
-                </div>
-                <button id="draw" onclick="toggleDraw()">Color mode</button>
-                <button id="rainbow" onclick="toggleRainbow()">Rainbow mode</button>
-                <button id="btn-show-grid" value="gridOff" onclick="gridOnOff()">Show grid</button>
-                <button id="eraser" onclick="toggleErase()">Eraser</button>
-                <button id="clear" onclick="clearGrid()">Clear</button>            
-                <div class="slidecontainer">
-                    <input type="range" min="1" max="100" value="16" class="slider" id="myRange">
-                    <div class="grid-dimensions">
-                        <p>Grid size: </p>
-                        <p id="demo"></p>
-                        <p> x </p>
-                        <p id="demo2"></p>
+    <header>ETCH-A-SKETCH</header>
+        
+            <div class="main-content">
+                <div class="buttons">
+                    <div class="pen-colour">
+                        <input type="color" id="colorPicker" class="colorpicker">
+                        <p class="cplabel">Pen Colour</p>
+                    </div>
+                    <div class="background-colour">
+                        <input type="color" id="background" class="colorpicker">
+                        <p class="cplabel">BackGround Color</p>
+                    </div>
+                    <button id="draw" onclick="toggleDraw()">Color mode</button>
+                    <button id="rainbow" onclick="toggleRainbow()">Rainbow mode</button>
+                    <button id="btn-show-grid" value="gridOff" onclick="gridOnOff()">Show grid</button>
+                    <button id="eraser" onclick="toggleErase()">Eraser</button>
+                    <button id="clear" onclick="clearGrid()">Clear</button>            
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="16" class="slider" id="myRange">
+                        <div class="grid-dimensions">
+                            <p>Grid size: </p>
+                            <p id="demo"></p>
+                            <p> x </p>
+                            <p id="demo2"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="drawingBoard"></div>
-        </div>      
+                <div class="drawingBoard"></div>
+            </div> 
+            
     <footer>
         <p>Copyright © Marko Kask 2022</p>
     </footer>

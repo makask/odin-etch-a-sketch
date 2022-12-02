@@ -34,14 +34,17 @@ function fillDrawingBoard(boardSize){
 
 function toggleDraw(){
     action = "draw";
+    setActiveButton(action);
 }
 
 function toggleRainbow(){
     action = "rainbow";
+    setActiveButton(action);
 }
 
 function toggleErase(){
     action = "erase";
+    setActiveButton(action);
 }
 
 /*Draw or not on grid*/
@@ -97,6 +100,7 @@ slider.oninput = function() {
   output.innerHTML = this.value;
   output2.innerHTML = this.value;
   fillDrawingBoard(this.value);
+  resetButtons();
 }
 
 /* Show/Disable Grid*/
@@ -125,6 +129,7 @@ function gridOnOff(){
 /* Clear entire grid*/
 function clearGrid(){
     action = "draw";
+    resetButtons();
     let squares = drawingBoard.querySelectorAll("div");
     squares.forEach((div) => {
         div.style.background = "white";
@@ -135,8 +140,16 @@ function clearGrid(){
 /* Drawing Color */
 let colorPicker = document.querySelector("#colorPicker");
 colorPicker.addEventListener("change", (e) => {
-    action = "draw";
-    drawColor = e.target.value;
+    if(action==="rainbow"){
+        action = "rainbow";
+    }else if(action==="erase"){
+        action = "erase";
+    }else{
+        action = "draw";
+        drawColor = e.target.value;
+    }
+    //action = "draw";
+    //drawColor = e.target.value;
 });
 
 /* Background Color */
@@ -153,6 +166,40 @@ backColor.addEventListener("change", (e) => {
         }
     });
 });
+
+function setActiveButton(action){
+    let draw = document.querySelector("#draw");
+    let rainbow = document.querySelector("#rainbow");
+    let eraser = document.querySelector("#eraser");
+
+    if(action === "draw"){
+        draw.classList.add("clicked");
+        rainbow.classList.remove("clicked");
+        eraser.classList.remove("clicked");
+    }
+
+    if(action === "rainbow"){
+        rainbow.classList.add("clicked");
+        draw.classList.remove("clicked");
+        eraser.classList.remove("clicked");
+    }
+
+    if(action === "erase"){
+        eraser.classList.add("clicked");
+        rainbow.classList.remove("clicked");
+        draw.classList.remove("clicked");
+    }
+}
+
+function resetButtons(){
+    let draw = document.querySelector("#draw");
+    let rainbow = document.querySelector("#rainbow");
+    let eraser = document.querySelector("#eraser");
+
+    draw.classList.remove("clicked");
+    rainbow.classList.remove("clicked");
+    eraser.classList.remove("clicked");
+}
 
 
 
