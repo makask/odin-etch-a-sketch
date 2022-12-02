@@ -148,8 +148,6 @@ colorPicker.addEventListener("change", (e) => {
         action = "draw";
         drawColor = e.target.value;
     }
-    //action = "draw";
-    //drawColor = e.target.value;
 });
 
 /* Background Color */
