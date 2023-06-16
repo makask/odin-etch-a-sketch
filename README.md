@@ -1,6 +1,6 @@
 # odin-etch-a-sketch
 
-This a browser version of something between a sketchpad and an Etch-A-Sketch. 
+This is a browser version of something between a sketchpad and an Etch-A-Sketch. 
 The main purpose of this project is to develop javascript skills.
 
 Features
